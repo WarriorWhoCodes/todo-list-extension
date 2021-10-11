@@ -17,7 +17,10 @@ const updateView = () => {
 
         const taskText = document.createElement("div");
         taskText.setAttribute("class", Element.isDone ? "task-text task-completed" : "task-text");
-        taskText.innerHTML = Element.task;
+        taskText.innerHTML = (index + 1) + ". " + Element.task;
+
+        const taskControls = document.createElement("div");
+        taskControls.setAttribute("class", "task-controls");
 
         const taskEdit = document.createElement("button");
         taskEdit.innerHTML = "Edit";
@@ -37,10 +40,12 @@ const updateView = () => {
         taskDo.setAttribute("class", "task-btn task-btn-do");
         taskDo.addEventListener("click", (event) => doTask(event.target.id));
 
+        taskControls.appendChild(taskEdit);
+        taskControls.appendChild(taskDelete);
+        taskControls.appendChild(taskDo);
+
         newTask.appendChild(taskText);
-        newTask.appendChild(taskEdit);
-        newTask.appendChild(taskDelete);
-        newTask.appendChild(taskDo);
+        newTask.appendChild(taskControls);
 
         tasksList.appendChild(newTask);
     });
